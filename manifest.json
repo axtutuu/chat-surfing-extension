@@ -3,7 +3,10 @@
   "version" : "0.1",
   "manifest_version" : 2,
   "description" : "サンプル拡張",
-  "permissions": ["https://*/*"],
+  "permissions": [
+    "activeTab",
+    "https://*/*"
+  ],
 
   "browser_action" : {
     "default_icon" : "./images/message-icon.png",
