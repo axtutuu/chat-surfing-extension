@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
   getCurrentTabUrl(function(url) {
     // Put the image URL in Google search.
     room = url.match(/^[httpsfile]+:\/{2,3}([0-9a-zA-Z\.\-:]+?):?[0-9]*?\//i);
-    renderStatus('Current Chat Room : ' + room[1]);
+    renderStatus(room[1]);
   });
 });
 
@@ -63,7 +63,8 @@ $(function() {
 
   // 画面にメッセージを追記
   function appendMessage( text ) {
-      $("#messageView").append( "<div>" + text + "</div>" );
+      // $("#messageView").append( "<div>" + text + "</div>" );
+      $("#chats").append( '<div class="box_right"><div class="arrow_box_right">' + text + '</div></div><div class="clear"></div>' );
   }
 
   // 自分を含む全員宛にメッセージを送信

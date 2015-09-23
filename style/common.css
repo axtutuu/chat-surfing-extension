@@ -1,0 +1,59 @@
+.wrap {
+  background-color: #FFF8DC;
+}
+
+.room_name {
+  font-size: 180%;
+  margin: 0 auto;
+}
+
+.center {
+  text-align: center;
+}
+
+
+
+
+.box_right {
+  text-align: right;
+  width: 50%;
+  float: right;
+  word-wrap:break-word;
+}
+.arrow_box_right {
+	position: relative;
+	background: #81F7F3;
+	border: 1px solid #81F7F3;
+  padding: 3px;
+  border-radius: 10px;        /* CSS3草案 */
+  -webkit-border-radius: 10px;    /* Safari,Google Chrome用 */
+  -moz-border-radius: 10px;   /* Firefox用 */
+}
+.arrow_box_right:after, .arrow_box_right:before {
+	top: 100%;
+	right: 30%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box_right:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-top-color: #81F7F3;
+	border-width: 10px;
+	margin-right: -10px;
+}
+.arrow_box_right:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-top-color: #c2e1f5;
+	border-width: 11px;
+	margin-right: -11px;
+}
+
+.clear {
+  clear: both;
+  margin-bottom: 15px;
+}
