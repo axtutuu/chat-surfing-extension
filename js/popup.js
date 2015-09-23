@@ -1,5 +1,5 @@
-var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
-// var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
+//var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
+var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
 var room = [];
 
 function getCurrentTabUrl(callback) {
