@@ -1,5 +1,6 @@
 var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
 // var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
+var room = [];
 
 function getCurrentTabUrl(callback) {
   // Query filter to be passed to chrome.tabs.query - see
@@ -52,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-
 $(function() {
   // サーバーからのデータ受け取り処理
   ioSocket.on( "connect", function() {} ); // 接続
@@ -74,7 +74,7 @@ $(function() {
       $("#messageForm").val("");
 
       // クライアントからサーバーへ送信
-      ioSocket.emit( "c2s_message", { value : message } );
+      ioSocket.emit( "c2s_message", { value : message, room: room[1]} );
   });
 
   // 自分以外の全員宛にメッセージを送信
@@ -88,9 +88,3 @@ $(function() {
       ioSocket.emit( "c2s_broadcast", { value : message } );
   });
 });
-
-
-
-
-
-
