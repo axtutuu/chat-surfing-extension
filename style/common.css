@@ -53,6 +53,50 @@
 	margin-right: -11px;
 }
 
+
+
+
+.arrow_box_left {
+	position: relative;
+	background: #FFF;
+	border: 1px solid #FFF;
+  padding: 3px;
+  border-radius: 10px;        /* CSS3草案 */
+  -webkit-border-radius: 10px;    /* Safari,Google Chrome用 */
+  -moz-border-radius: 10px;   /* Firefox用 */
+}
+.arrow_box_left:after, .arrow_box_left:before {
+	top: 100%;
+	left: 30%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box_left:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-top-color: #FFF;
+	border-width: 10px;
+	margin-left: -10px;
+}
+.arrow_box_left:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-top-color: #FFF;
+	border-width: 11px;
+	margin-left: -11px;
+}
+
+.box_left {
+  width: 50%;
+  float: left;
+}
+
+
+
+
 .clear {
   clear: both;
   margin-bottom: 15px;
