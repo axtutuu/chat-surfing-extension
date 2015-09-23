@@ -95,6 +95,6 @@ $(function() {
       $("#messageForm").val("");
 
       // クライアントからサーバーへ送信
-      ioSocket.emit( "c2s_broadcast", { value : message } );
+      ioSocket.emit( "c2s_broadcast", { value : message, room: room[1] } );
   });
 });
