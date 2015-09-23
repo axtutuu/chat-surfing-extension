@@ -67,6 +67,7 @@ $(function() {
       $("#chats").append( '<div class="box_right"><div class="arrow_box_right">' + text + '</div></div><div class="clear"></div>' );
   }
 
+  // 自分で送信したメッセージ用
   function appendMyMessage(text) {
     $('#chats').append('<div class="box_left"><div class="arrow_box_left">' + text + '</div></div><div class="clear"></div>');
   }
@@ -90,7 +91,6 @@ $(function() {
       var message = $("#messageForm").val();
 
       appendMyMessage(message);
-
 
       $("#messageForm").val("");
 
