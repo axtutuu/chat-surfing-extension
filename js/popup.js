@@ -1,5 +1,5 @@
-var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
-// var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
+// var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
+var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
 var room = [];
 
 function getCurrentTabUrl(callback) {
@@ -58,7 +58,16 @@ $(function() {
 
   // 接続
   ioSocket.on( "connect", function() {
-    ioSocket.emit("join_room", {room: room[1]})
+    ioSocket.emit("join_room", {room: room[1]});
+
+    // ルームネームをPOST
+    $.ajax({
+      type: "POST",
+      url:  "http://localhost:3000/rooms",
+      data: {
+        "name": room[1]
+      },
+    });
   });
 
   ioSocket.on( "disconnect", function() {} ); // 切断
