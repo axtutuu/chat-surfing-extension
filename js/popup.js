@@ -64,12 +64,12 @@ $(function() {
   ioSocket.on( "disconnect", function() {} ); // 切断
 
   // サーバーからクライアントへの送り返し
-  ioSocket.on( "s2c_message", function( data ) { appendMessage( data.value ) });
+  ioSocket.on( "s2c_message", function( data ) { appendMessage( data ) });
 
   // 画面にメッセージを追記
-  function appendMessage( text ) {
+  function appendMessage( data ) {
       // $("#messageView").append( "<div>" + text + "</div>" );
-      $("#chats").append( '<div class="box_right"><div class="arrow_box_right">' + text + '</div></div><div class="clear"></div>' );
+      $("#chats").append( '<div class="box_right"><p><span style="color: blue;">' + data.id +'</span></p><div class="arrow_box_right">' + data.value + '</div></div><div class="clear"></div>' );
   }
 
   // 自分で送信したメッセージ用
@@ -79,26 +79,20 @@ $(function() {
 
   // 自分を含む全員宛にメッセージを送信
   $("#sendMessageBtn").click( function() {
-
       // メッセージの内容を取得し、その後フォームをクリア
       var message = $("#messageForm").val();
       $("#messageForm").val("");
-
       // クライアントからサーバーへ送信
       ioSocket.emit( "c2s_message", { value : message, room: room[1]} );
   });
 
   // 自分以外の全員宛にメッセージを送信
   $("#sendMessageBroadcastBtn").click( function() {
-
       // メッセージの内容を取得し、その後フォームをクリア
       var message = $("#messageForm").val();
-
       appendMyMessage(message);
-
       $("#messageForm").val("");
-
       // クライアントからサーバーへ送信
-      ioSocket.emit( "c2s_broadcast", { value : message, room: room[1] } );
+      ioSocket.emit( "c2s_broadcast", { value : message, room: room[1]} );
   });
 });
