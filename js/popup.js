@@ -1,5 +1,5 @@
-//var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
-var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
+var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
+// var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
 var room = [];
 
 function getCurrentTabUrl(callback) {
@@ -55,7 +55,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 $(function() {
   // サーバーからのデータ受け取り処理
-  ioSocket.on( "connect", function() {} ); // 接続
+
+  // 接続
+  ioSocket.on( "connect", function() {
+    ioSocket.emit("join_room", {room: room[1]})
+  });
+
   ioSocket.on( "disconnect", function() {} ); // 切断
 
   // サーバーからクライアントへの送り返し
@@ -85,7 +90,6 @@ $(function() {
 
   // 自分以外の全員宛にメッセージを送信
   $("#sendMessageBroadcastBtn").click( function() {
-
 
       // メッセージの内容を取得し、その後フォームをクリア
       var message = $("#messageForm").val();
