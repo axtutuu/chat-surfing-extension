@@ -1,5 +1,5 @@
-// var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
-var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
+var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
+// var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
 var room = [];
 
 function getCurrentTabUrl(callback) {
@@ -53,6 +53,16 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+function postRoomData(room) {
+  $.ajax({
+    type: "POST",
+    url:  "http://localhost:3000/rooms",
+    data: {
+      "name": room
+    },
+  });
+}
+
 $(function() {
   // サーバーからのデータ受け取り処理
 
@@ -60,14 +70,8 @@ $(function() {
   ioSocket.on( "connect", function() {
     ioSocket.emit("join_room", {room: room[1]});
 
-    // ルームネームをPOST
-    $.ajax({
-      type: "POST",
-      url:  "http://localhost:3000/rooms",
-      data: {
-        "name": room[1]
-      },
-    });
+    // ルームの作成
+    postRoomData(room[1])
   });
 
   ioSocket.on( "disconnect", function() {} ); // 切断
@@ -78,7 +82,7 @@ $(function() {
   // 画面にメッセージを追記
   function appendMessage( data ) {
       // $("#messageView").append( "<div>" + text + "</div>" );
-      $("#chats").append( '<div class="box_right"><p><span style="color: blue;">' + data.id +'</span></p><div class="arrow_box_right">' + data.value + '</div></div><div class="clear"></div>' );
+      $("#chats").append( '<div class="box_right"><p><span style="color: blue;"> ID: ' + data.id +'</span></p><div class="arrow_box_right">' + data.value + '</div></div><div class="clear"></div>' );
   }
 
   // 自分で送信したメッセージ用
