@@ -24,9 +24,6 @@ function getCurrentTabUrl(callback) {
     // A window can only have one active tab at a time, so the array consists of
     // exactly one tab.
     var tab = tabs[0];
-    console.log('pop--------------------------------');
-    console.log(tab);
-    console.log('pop--------------------------------');
 
     // A tab is a plain object that provides information about the tab.
     // See https://developer.chrome.com/extensions/tabs#type-Tab
@@ -123,6 +120,18 @@ function appendFirstData(data) {
     $("#chats").append( '<div class="box_right"><p><span style="color: blue;"> ID: ' + data.name +'</span></p><div class="arrow_box_right">' + data.message + '</div></div><div class="clear"></div>' );
 }
 
+function appendMyStamp(val) {
+  if (val == "(work)") {
+    $("#chats").append( '<div class="box_left"><img class="stamp" src="images/linestamp_work.png"></img></div><div class="clear"></div>' );
+    console.log("work");
+  } else {
+    console.log("workじゃない");
+
+    // 最終的にマッチしなかったら普通に出す
+    appendMyMessage(val);
+  }
+}
+
 $(function() {
   // サーバーからのデータ受け取り処理
 
@@ -174,7 +183,6 @@ $(function() {
   $("#sendMessageBroadcastBtn").click( function() {
       // メッセージの内容を取得し、その後フォームをクリア
       var message = $("#messageForm").val();
-      appendMyMessage(message);
       $("#messageForm").val("");
 
       console.log("user_id:" + user_id + "room_id:" + room_id);
@@ -182,6 +190,12 @@ $(function() {
       postChatData(user_id, room_id, message);
 
       audio.play();
+
+      if (message.match("\\(*\\)")) {
+        appendMyStamp(message);
+      } else {
+        appendMyMessage(message);
+      }
 
       // クライアントからサーバーへ送信
       ioSocket.emit( "c2s_broadcast", { value : message, room: room[1]} );
