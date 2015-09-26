@@ -1,7 +1,7 @@
 var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
 // var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
-var api = "http://52.68.82.10";
-// var api = "http://localhost:3000";
+// var api = "http://52.68.82.10";
+var api = "http://localhost:3000";
 
 var room = [];
 var room_id;
@@ -22,6 +22,9 @@ function getCurrentTabUrl(callback) {
     // A window can only have one active tab at a time, so the array consists of
     // exactly one tab.
     var tab = tabs[0];
+    console.log('pop--------------------------------');
+    console.log(tab);
+    console.log('pop--------------------------------');
 
     // A tab is a plain object that provides information about the tab.
     // See https://developer.chrome.com/extensions/tabs#type-Tab
