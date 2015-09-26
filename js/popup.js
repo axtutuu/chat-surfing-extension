@@ -1,5 +1,8 @@
 var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
 // var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
+var api = "http://52.68.82.10";
+// var api = "http://localhost:3000";
+
 var room = [];
 var room_id;
 var user_id;
@@ -58,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function postUserData(user) {
   $.ajax({
     type: "POST",
-    url : "http://localhost:3000/users",
+    url : api + "/users",
     data: {
       "name": user
     },
@@ -72,7 +75,7 @@ function postUserData(user) {
 function postRoomData(room) {
   $.ajax({
     type: "POST",
-    url:  "http://localhost:3000/rooms",
+    url:  api + "/rooms",
     data: {
       "name": room
     },
@@ -88,7 +91,7 @@ function postRoomData(room) {
 function postChatData(user_id, room_id, message) {
   $.ajax({
     type: "POST",
-    url : "http://localhost:3000/chats",
+    url : api + "/chats",
     data: {
       "user_id": user_id,
       "room_id": room_id,
@@ -100,7 +103,7 @@ function postChatData(user_id, room_id, message) {
 function fetchChatData(room_id) {
   $.ajax({
     type: "GET",
-    url : "http://localhost:3000/chats?room_id=" + room_id,
+    url : api + "/chats?room_id=" + room_id,
     success: function(data) {
 
       $.each(data.results, function(index, elem){
