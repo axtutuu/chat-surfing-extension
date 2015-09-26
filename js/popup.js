@@ -3,6 +3,8 @@ var ioSocket = io.connect("http://localhost:8080"); // チャットサーバー�
 // var api = "http://52.68.82.10";
 var api = "http://localhost:3000";
 
+var audio = new Audio("music/se5.wav");
+
 var room = [];
 var room_id;
 var user_id;
@@ -141,7 +143,12 @@ $(function() {
   ioSocket.on( "disconnect", function() {} ); // 切断
 
   // サーバーからクライアントへの送り返し
-  ioSocket.on( "s2c_message", function( data ) { appendMessage( data ) });
+  ioSocket.on( "s2c_message", function( data ) {
+
+    appendMessage( data );
+    audio.play();
+
+  });
 
   // 画面にメッセージを追記
   function appendMessage( data ) {
@@ -173,6 +180,8 @@ $(function() {
       console.log("user_id:" + user_id + "room_id:" + room_id);
       // chatの作成
       postChatData(user_id, room_id, message);
+
+      audio.play();
 
       // クライアントからサーバーへ送信
       ioSocket.emit( "c2s_broadcast", { value : message, room: room[1]} );
