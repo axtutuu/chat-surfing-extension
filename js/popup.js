@@ -79,6 +79,8 @@ function postRoomData(room) {
     success: function(data){
       console.log(data.results.room_id);
       room_id = data.results.room_id;
+
+      fetchChatData(room_id);
     }
   });
 }
@@ -95,6 +97,24 @@ function postChatData(user_id, room_id, message) {
   });
 }
 
+function fetchChatData(room_id) {
+  $.ajax({
+    type: "GET",
+    url : "http://localhost:3000/chats?room_id=" + room_id,
+    success: function(data) {
+
+      $.each(data.results, function(index, elem){
+        appendFirstData(elem);
+      });
+
+    }
+  });
+}
+
+function appendFirstData(data) {
+    $("#chats").append( '<div class="box_right"><p><span style="color: blue;"> ID: ' + data.name +'</span></p><div class="arrow_box_right">' + data.message + '</div></div><div class="clear"></div>' );
+}
+
 $(function() {
   // サーバーからのデータ受け取り処理
 
@@ -108,6 +128,7 @@ $(function() {
     postRoomData(room[1]);
     // Userの作成
     postUserData(ioSocket.id);
+
 
   });
 
