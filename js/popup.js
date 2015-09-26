@@ -1,6 +1,8 @@
 var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
 // var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
 var room = [];
+var room_id;
+var user_id;
 
 function getCurrentTabUrl(callback) {
   // Query filter to be passed to chrome.tabs.query - see
@@ -53,12 +55,42 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+function postUserData(user) {
+  $.ajax({
+    type: "POST",
+    url : "http://localhost:3000/users",
+    data: {
+      "name": user
+    },
+    success: function(data){
+      console.log(data);
+      user_id = data.results.user_id;
+    }
+  });
+}
+
 function postRoomData(room) {
   $.ajax({
     type: "POST",
     url:  "http://localhost:3000/rooms",
     data: {
       "name": room
+    },
+    success: function(data){
+      console.log(data.results.room_id);
+      room_id = data.results.room_id;
+    }
+  });
+}
+
+function postChatData(user_id, room_id, message) {
+  $.ajax({
+    type: "POST",
+    url : "http://localhost:3000/chats",
+    data: {
+      "user_id": user_id,
+      "room_id": room_id,
+      "message": message,
     },
   });
 }
@@ -68,10 +100,15 @@ $(function() {
 
   // 接続
   ioSocket.on( "connect", function() {
+
+    console.log(ioSocket.id);
     ioSocket.emit("join_room", {room: room[1]});
 
     // ルームの作成
-    postRoomData(room[1])
+    postRoomData(room[1]);
+    // Userの作成
+    postUserData(ioSocket.id);
+
   });
 
   ioSocket.on( "disconnect", function() {} ); // 切断
@@ -105,6 +142,11 @@ $(function() {
       var message = $("#messageForm").val();
       appendMyMessage(message);
       $("#messageForm").val("");
+
+      console.log("user_id:" + user_id + "room_id:" + room_id);
+      // chatの作成
+      postChatData(user_id, room_id, message);
+
       // クライアントからサーバーへ送信
       ioSocket.emit( "c2s_broadcast", { value : message, room: room[1]} );
   });

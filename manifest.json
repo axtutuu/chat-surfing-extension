@@ -5,7 +5,8 @@
   "description" : "サンプル拡張",
   "permissions": [
     "activeTab",
-    "https://*/*"
+    "https://*/*",
+    "http://*/*"
   ],
 
   "browser_action" : {
