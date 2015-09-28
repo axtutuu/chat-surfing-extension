@@ -158,16 +158,16 @@ function appendStamp(val) {
     console.log("work");
 
   } else if (val == "(work_2)") {
-    $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/linestamp_work2.png"></img></div><div class="clear"></div>' );
+    $("#chats").append( '<div class="box_right"><img class="stamp" src="../images/linestamp_work2.png"></img></div><div class="clear"></div>' );
 
   } else if (val == "(golgo)") {
-    $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/golgo.png"></img></div><div class="clear"></div>' );
+    $("#chats").append( '<div class="box_right"><img class="stamp" src="../images/golgo.png"></img></div><div class="clear"></div>' );
 
   } else if (val == "(samurai_1)") {
-    $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/samurai_1.png"></img></div><div class="clear"></div>' );
+    $("#chats").append( '<div class="box_right"><img class="stamp" src="../images/samurai_1.png"></img></div><div class="clear"></div>' );
 
   } else if (val == "(samurai_2)") {
-    $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/samurai_2.png"></img></div><div class="clear"></div>' );
+    $("#chats").append( '<div class="box_right"><img class="stamp" src="../images/samurai_2.png"></img></div><div class="clear"></div>' );
 
   } else {
     console.log("workじゃない");
