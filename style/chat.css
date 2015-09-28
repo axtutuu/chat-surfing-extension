@@ -1,0 +1,17 @@
+.wrap {
+  background-color: #A9F5F2;
+}
+
+.chats {
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.header-box {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  z-index: 3;
+  margin-left: -15px;
+}

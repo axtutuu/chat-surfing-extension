@@ -3,7 +3,7 @@ var ioSocket = io.connect("http://localhost:8080"); // チャットサーバー�
 // var api = "http://52.68.82.10";
 var api = "http://localhost:3000";
 
-var audio = new Audio("music/se5.wav");
+var audio = new Audio("../music/se5.wav");
 
 var room = [];
 var room_id;
@@ -122,7 +122,7 @@ function appendFirstData(data) {
 
 function appendMyStamp(val) {
   if (val == "(work)") {
-    $("#chats").append( '<div class="box_left"><img class="stamp" src="images/linestamp_work.png"></img></div><div class="clear"></div>' );
+    $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/linestamp_work.png"></img></div><div class="clear"></div>' );
     console.log("work");
   } else {
     console.log("workじゃない");
@@ -131,6 +131,15 @@ function appendMyStamp(val) {
     appendMyMessage(val);
   }
 }
+
+function scrollToButtom(){
+  var ds = $(document).height();
+  $('html,body').stop().animate({scrollTop: ds + 300}, 500)
+}
+
+$(document).ready(function(){
+  scrollToButtom();
+});
 
 $(function() {
   // サーバーからのデータ受け取り処理
@@ -153,10 +162,9 @@ $(function() {
 
   // サーバーからクライアントへの送り返し
   ioSocket.on( "s2c_message", function( data ) {
-
     appendMessage( data );
     audio.play();
-
+    scrollToButtom();
   });
 
   // 画面にメッセージを追記
@@ -171,13 +179,13 @@ $(function() {
   }
 
   // 自分を含む全員宛にメッセージを送信
-  $("#sendMessageBtn").click( function() {
-      // メッセージの内容を取得し、その後フォームをクリア
-      var message = $("#messageForm").val();
-      $("#messageForm").val("");
-      // クライアントからサーバーへ送信
-      ioSocket.emit( "c2s_message", { value : message, room: room[1]} );
-  });
+  // $("#sendMessageBtn").click( function() {
+  //     // メッセージの内容を取得し、その後フォームをクリア
+  //     var message = $("#messageForm").val();
+  //     $("#messageForm").val("");
+  //     // クライアントからサーバーへ送信
+  //     ioSocket.emit( "c2s_message", { value : message, room: room[1]} );
+  // });
 
   // 自分以外の全員宛にメッセージを送信
   $("#sendMessageBroadcastBtn").click( function() {
@@ -197,6 +205,7 @@ $(function() {
         appendMyMessage(message);
       }
 
+      scrollToButtom();
       // クライアントからサーバーへ送信
       ioSocket.emit( "c2s_broadcast", { value : message, room: room[1]} );
   });

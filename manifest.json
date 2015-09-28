@@ -15,7 +15,7 @@
   },
 
   "browser_action" : {
-    "default_icon" : "./images/message-icon.png",
+    "default_icon" : "./images/logo-white.png",
     "default_title" :  "My First Extension",
     "default_popup" : "popup.html"
   }
