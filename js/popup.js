@@ -109,7 +109,13 @@ function fetchChatData(room_id) {
     success: function(data) {
 
       $.each(data.results, function(index, elem){
-        appendFirstData(elem);
+        var message = elem.message;
+
+        if (message.match("\\(*\\)")) {
+          appendStamp(message);
+        } else {
+          appendFirstData(elem);
+        }
       });
 
     }
@@ -118,6 +124,7 @@ function fetchChatData(room_id) {
 
 function appendFirstData(data) {
     $("#chats").append( '<div class="box_right"><p><span style="color: blue;"> ID: ' + data.name +'</span></p><div class="arrow_box_right">' + data.message + '</div></div><div class="clear"></div>' );
+    scrollToButtom();
 }
 
 function appendMyStamp(val) {
@@ -142,16 +149,13 @@ function appendStamp(val) {
     // 最終的にマッチしなかったら普通に出す
     appendMyMessage(val);
   }
+  scrollToButtom();
 }
 
 function scrollToButtom(){
   var ds = $(document).height();
   $('html,body').stop().animate({scrollTop: ds + 300}, 500)
 }
-
-$(document).ready(function(){
-  scrollToButtom();
-});
 
 $(function() {
   // サーバーからのデータ受け取り処理

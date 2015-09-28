@@ -102,6 +102,7 @@
 .box_left {
   width: 50%;
   float: left;
+  word-wrap:break-word;
 }
 
 .clear {
