@@ -15,3 +15,8 @@
   z-index: 3;
   margin-left: -15px;
 }
+
+.stamp {
+  width: 200px;
+  height: auto;
+}

@@ -131,6 +131,19 @@ function appendMyStamp(val) {
   if (val == "(work)") {
     $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/linestamp_work.png"></img></div><div class="clear"></div>' );
     console.log("work");
+
+  } else if (val == "(work_2)") {
+    $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/linestamp_work2.png"></img></div><div class="clear"></div>' );
+
+  } else if (val == "(golgo)") {
+    $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/golgo.png"></img></div><div class="clear"></div>' );
+
+  } else if (val == "(samurai_1)") {
+    $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/samurai_1.png"></img></div><div class="clear"></div>' );
+
+  } else if (val == "(samurai_2)") {
+    $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/samurai_2.png"></img></div><div class="clear"></div>' );
+
   } else {
     console.log("workじゃない");
 
@@ -143,6 +156,19 @@ function appendStamp(val) {
   if (val == "(work)") {
     $("#chats").append( '<div class="box_right"><img class="stamp" src="../images/linestamp_work.png"></img></div><div class="clear"></div>' );
     console.log("work");
+
+  } else if (val == "(work_2)") {
+    $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/linestamp_work2.png"></img></div><div class="clear"></div>' );
+
+  } else if (val == "(golgo)") {
+    $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/golgo.png"></img></div><div class="clear"></div>' );
+
+  } else if (val == "(samurai_1)") {
+    $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/samurai_1.png"></img></div><div class="clear"></div>' );
+
+  } else if (val == "(samurai_2)") {
+    $("#chats").append( '<div class="box_left"><img class="stamp" src="../images/samurai_2.png"></img></div><div class="clear"></div>' );
+
   } else {
     console.log("workじゃない");
 
@@ -155,6 +181,17 @@ function appendStamp(val) {
 function scrollToButtom(){
   var ds = $(document).height();
   $('html,body').stop().animate({scrollTop: ds + 300}, 500)
+}
+
+// 画面にメッセージを追記
+function appendMessage( data ) {
+    // $("#messageView").append( "<div>" + text + "</div>" );
+    $("#chats").append( '<div class="box_right"><p><span style="color: blue;"> ID: ' + data.id +'</span></p><div class="arrow_box_right">' + data.value + '</div></div><div class="clear"></div>' );
+}
+
+// 自分で送信したメッセージ用
+function appendMyMessage(text) {
+  $('#chats').append('<div class="box_left"><div class="arrow_box_left">' + text + '</div></div><div class="clear"></div>');
 }
 
 $(function() {
@@ -190,16 +227,6 @@ $(function() {
     scrollToButtom();
   });
 
-  // 画面にメッセージを追記
-  function appendMessage( data ) {
-      // $("#messageView").append( "<div>" + text + "</div>" );
-      $("#chats").append( '<div class="box_right"><p><span style="color: blue;"> ID: ' + data.id +'</span></p><div class="arrow_box_right">' + data.value + '</div></div><div class="clear"></div>' );
-  }
-
-  // 自分で送信したメッセージ用
-  function appendMyMessage(text) {
-    $('#chats').append('<div class="box_left"><div class="arrow_box_left">' + text + '</div></div><div class="clear"></div>');
-  }
 
   // 自分を含む全員宛にメッセージを送信
   // $("#sendMessageBtn").click( function() {
