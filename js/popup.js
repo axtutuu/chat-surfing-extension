@@ -1,7 +1,8 @@
-//var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
-var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
-var api = "http://52.68.82.10";
-// var api = "http://localhost:3000";
+var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
+var api = "http://localhost:3000";
+
+// var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
+// var api = "http://52.68.82.10";
 
 var audio = new Audio("../music/se5.wav");
 
@@ -170,8 +171,6 @@ function appendStamp(val) {
     $("#chats").append( '<div class="box_right"><img class="stamp" src="../images/samurai_2.png"></img></div><div class="clear"></div>' );
 
   } else {
-    console.log("workじゃない");
-
     // 最終的にマッチしなかったら普通に出す
     appendMyMessage(val);
   }
@@ -180,7 +179,7 @@ function appendStamp(val) {
 
 function scrollToButtom(){
   var ds = $(document).height();
-  $('html,body').stop().animate({scrollTop: ds + 300}, 500)
+  $('html,body').stop().animate({scrollTop: ds + 400}, 500)
 }
 
 // 画面にメッセージを追記
