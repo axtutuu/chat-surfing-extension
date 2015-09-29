@@ -1,8 +1,8 @@
-var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
-var api = "http://localhost:3000";
+// var ioSocket = io.connect("http://localhost:8080"); // チャットサーバーに接続
+// var api = "http://localhost:3000";
 
-// var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
-// var api = "http://52.68.82.10";
+var ioSocket = io.connect("http://54.64.39.47:8080"); // チャットサーバーに接続
+var api = "http://52.68.82.10";
 
 var audio = new Audio("../music/se5.wav");
 
